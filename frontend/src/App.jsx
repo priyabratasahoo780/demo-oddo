@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import UserTrips from './pages/UserTrips';
 import SearchResults from './pages/SearchResults';
 import Community from './pages/Community';
+import CalendarView from './pages/CalendarView';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/my-trips" element={<UserTrips />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/calendar" element={<CalendarView />} />
       </Routes>
     </BrowserRouter>
   );
