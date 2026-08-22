@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Map, CalendarDays, Wallet, Users, Heart, Settings, Plane, User, MessageCircle, Calendar } from 'lucide-react';
+import { LayoutDashboard, Map, CalendarDays, Wallet, Users, Heart, Settings, Plane, User, MessageCircle, Calendar, Search } from 'lucide-react';
 
 const navItems = [
     { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+    { label: 'Search', icon: Search, path: '/search' },
     { label: 'User Trip Listing', icon: Map, path: '/my-trips' },
     { label: 'Itinerary', icon: CalendarDays, path: '/itinerary' },
     { label: 'Budget', icon: Wallet, path: '/budget' },
