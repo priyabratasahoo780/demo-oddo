@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, ChevronDown, Filter, MapPin, Star, ArrowRight, X, ChevronRight } from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 
@@ -60,6 +61,8 @@ const searchResults = [
 ];
 
 const SearchResults = () => {
+    const navigate = useNavigate();
+
     return (
         <DashboardLayout>
             {/* Header section with decorative background */}
@@ -158,7 +161,10 @@ const SearchResults = () => {
                                     <p className="text-[22px] font-bold text-[#0B2A4A] leading-none mb-1">{item.price}</p>
                                     <p className="text-[11px] text-gray-400">per person</p>
                                 </div>
-                                <button className="flex items-center gap-2 px-5 py-2.5 border border-[#C99A3D] rounded-lg text-[13px] font-bold text-[#0B2A4A] hover:bg-[#FFF8EB] transition-colors">
+                                <button
+                                    onClick={() => navigate('/itinerary-details')}
+                                    className="flex items-center gap-2 px-5 py-2.5 border border-[#C99A3D] rounded-lg text-[13px] font-bold text-[#0B2A4A] hover:bg-[#FFF8EB] transition-colors"
+                                >
                                     View Details
                                     <ArrowRight size={14} className="text-gray-400" />
                                 </button>

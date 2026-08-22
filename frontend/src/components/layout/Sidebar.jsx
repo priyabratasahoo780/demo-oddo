@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Map, CalendarDays, Wallet, Bookmark, Users, Heart, Settings, Plane, User, MessageCircle, Calendar } from 'lucide-react';
+import { LayoutDashboard, Map, CalendarDays, Wallet, Users, Heart, Settings, Plane, User, MessageCircle, Calendar } from 'lucide-react';
 
 const navItems = [
     { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-    { label: 'My Trips', icon: Map, path: '/my-trips' },
+    { label: 'User Trip Listing', icon: Map, path: '/my-trips' },
     { label: 'Itinerary', icon: CalendarDays, path: '/itinerary' },
     { label: 'Budget', icon: Wallet, path: '/budget' },
-    { label: 'Saved Places', icon: Bookmark, path: '/saved' },
     { label: 'Collaborators', icon: Users, path: '/collaborators' },
     { label: 'Wishlist', icon: Heart, path: '/wishlist' },
     { label: 'Profile', icon: User, path: '/profile' },
@@ -45,7 +44,9 @@ const Sidebar = () => {
                 {/* Navigation */}
                 <nav className="flex-1 mt-8 px-3 flex flex-col gap-1">
                     {navItems.map((item) => {
-                        const isActive = location.pathname === item.path;
+                        const isActive = item.path === '/'
+                            ? location.pathname === '/'
+                            : location.pathname.startsWith(item.path);
                         return (
                             <Link
                                 key={item.label}

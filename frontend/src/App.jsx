@@ -10,6 +10,7 @@ import UserTrips from './pages/UserTrips';
 import SearchResults from './pages/SearchResults';
 import Community from './pages/Community';
 import CalendarView from './pages/CalendarView';
+import ItineraryDetails from './pages/ItineraryDetails';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/community" element={<Community />} />
         <Route path="/calendar" element={<CalendarView />} />
+        <Route path="/itinerary-details" element={<ItineraryDetails />} />
       </Routes>
     </BrowserRouter>
   );
