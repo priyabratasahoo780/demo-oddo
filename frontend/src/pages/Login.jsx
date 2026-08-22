@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Plane } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from '../components/auth/AuthLayout';
 import AuthInput from '../components/auth/AuthInput';
 import PasswordInput from '../components/auth/PasswordInput';
@@ -10,9 +10,11 @@ import AuthDivider from '../components/auth/AuthDivider';
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [rememberMe, setRememberMe] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        navigate('/dashboard');
     };
 
     const titleNode = (
