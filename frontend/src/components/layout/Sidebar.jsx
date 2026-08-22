@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Map, CalendarDays, Wallet, Bookmark, Users, Heart, Settings, Plane, User } from 'lucide-react';
+import { LayoutDashboard, Map, CalendarDays, Wallet, Bookmark, Users, Heart, Settings, Plane, User, MessageCircle } from 'lucide-react';
 
 const navItems = [
     { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
@@ -11,6 +11,7 @@ const navItems = [
     { label: 'Collaborators', icon: Users, path: '/collaborators' },
     { label: 'Wishlist', icon: Heart, path: '/wishlist' },
     { label: 'Profile', icon: User, path: '/profile' },
+    { label: 'Community', icon: MessageCircle, path: '/community' },
     { label: 'Settings', icon: Settings, path: '/settings' },
 ];
 
