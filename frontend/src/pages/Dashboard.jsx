@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Plane, PlusCircle } from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import StatsCards from '../components/dashboard/StatsCards';
@@ -8,6 +9,8 @@ import BudgetOverview from '../components/dashboard/BudgetOverview';
 import RecentTrips from '../components/dashboard/RecentTrips';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
     return (
         <DashboardLayout>
             {/* Welcome header */}
@@ -56,10 +59,13 @@ const Dashboard = () => {
             <RecentTrips />
 
             {/* FAB - Plan a new trip */}
-            <button className="fixed bottom-8 right-8 bg-[#0B2A4A] text-white px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 z-50 group">
+            <Link
+                to="/create-trip"
+                className="fixed bottom-8 right-8 bg-[#0B2A4A] text-white px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 z-50 group cursor-pointer"
+            >
                 <PlusCircle size={20} className="text-[#E5C477] group-hover:rotate-90 transition-transform duration-300" />
                 <span className="text-[14px] font-medium">Plan a New Trip</span>
-            </button>
+            </Link>
         </DashboardLayout>
     );
 };
