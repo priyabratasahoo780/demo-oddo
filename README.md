@@ -25,14 +25,14 @@ The **end-to-end Planning Workflow** maps how a user progresses from authenticat
 
 ```mermaid
 graph LR
-    S1[<b>Stage 1<br>User Authentication</b><hr/>Register / Login<br>JWT issued<br>Session Initiated]
-    S2[<b>Stage 2<br>Dashboard Entry</b><hr/>Dashboard load<br>Trip summaries render<br>Budget highlight]
-    S3[<b>Stage 3<br>Trip Initialization</b><hr/>Create trip shell<br>Set dates & budget<br>Add cover image]
-    S4[<b>Stage 4<br>Itinerary Generation</b><hr/>Manual city search OR<br>AI text prompt generation<br>Draft preview]
-    S5[<b>Stage 5<br>Activity Scheduling</b><hr/>Drag & drop reorder<br>Timeline updates<br>Socket.IO broadcast]
-    S6[<b>Stage 6<br>Budget Analysis</b><hr/>Cost roll-up by category<br>Recharts visualization<br>Over-budget detection]
-    S7[<b>Stage 7<br>AI Optimization</b><hr/>Smart budget suggestions<br>LLM alternative ideas<br>One-click cost reduction]
-    S8[<b>Stage 8<br>Collaboration & Share</b><hr/>Invite friends to co-edit<br>Real-time sync<br>Public clone link]
+    S1["<b>Stage 1<br>User Authentication</b><hr/>Register / Login<br>JWT issued<br>Session Initiated"]
+    S2["<b>Stage 2<br>Dashboard Entry</b><hr/>Dashboard load<br>Trip summaries render<br>Budget highlight"]
+    S3["<b>Stage 3<br>Trip Initialization</b><hr/>Create trip shell<br>Set dates & budget<br>Add cover image"]
+    S4["<b>Stage 4<br>Itinerary Generation</b><hr/>Manual city search OR<br>AI text prompt generation<br>Draft preview"]
+    S5["<b>Stage 5<br>Activity Scheduling</b><hr/>Drag & drop reorder<br>Timeline updates<br>Socket.IO broadcast"]
+    S6["<b>Stage 6<br>Budget Analysis</b><hr/>Cost roll-up by category<br>Recharts visualization<br>Over-budget detection"]
+    S7["<b>Stage 7<br>AI Optimization</b><hr/>Smart budget suggestions<br>LLM alternative ideas<br>One-click cost reduction"]
+    S8["<b>Stage 8<br>Collaboration & Share</b><hr/>Invite friends to co-edit<br>Real-time sync<br>Public clone link"]
 
     S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S8
     
@@ -53,10 +53,10 @@ graph LR
 ```mermaid
 graph TD
     subgraph ClientTier [🌐 Client Tier — React 19 + Vite]
-        RC[React Components<br/>Pages + Layouts + Charts]
-        Redux[Redux Toolkit Store<br/>authSlice, dataSlice, uiSlice]
-        Router[React Router v7<br/>PrivateRoute + AdminRoute guards]
-        Axios[Axios Interceptors<br/>JWT inject + retry + 401 logout]
+        RC["React Components<br/>Pages + Layouts + Charts"]
+        Redux["Redux Toolkit Store<br/>authSlice, dataSlice, uiSlice"]
+        Router["React Router v7<br/>PrivateRoute + AdminRoute guards"]
+        Axios["Axios Interceptors<br/>JWT inject + retry + 401 logout"]
         
         RC --> Redux
         RC --> Router
@@ -66,8 +66,8 @@ graph TD
     Axios -->|HTTPS /api/v1/*| Vercel
 
     subgraph HostingTier [🚀 Hosting & Network Tier]
-        Vercel[Vercel Edge CDN<br/>Static SPA + API rewrites]
-        Render[Render Cloud<br/>Node.js API Server]
+        Vercel["Vercel Edge CDN<br/>Static SPA + API rewrites"]
+        Render["Render Cloud<br/>Node.js API Server"]
         
         Vercel -->|Proxy -> /api/v1/*| Render
     end
@@ -75,10 +75,10 @@ graph TD
     Render --> AppTier
 
     subgraph AppTier [⚙️ Application Tier — Express 5]
-        Helmet[Helmet<br/>HTTP Headers]
-        CORS[CORS<br/>Origin whitelist]
-        RateLimit[Rate Limiter<br/>15 req/15min auth]
-        HPP[HPP Guard]
+        Helmet["Helmet<br/>HTTP Headers"]
+        CORS["CORS<br/>Origin whitelist"]
+        RateLimit["Rate Limiter<br/>15 req/15min auth"]
+        HPP["HPP Guard"]
         
         Helmet --> CORS
         CORS --> RateLimit
@@ -131,14 +131,14 @@ When an admin requests platform-wide metrics (e.g., popular destinations and ave
 
 ```mermaid
 graph LR
-    S1[<b>Incoming API Request</b><hr/>JWT Admin Role<br>Date Filters]
-    S2[<b>$match Stage</b><hr/>Filter by status<br>published & date range]
-    S3[<b>$lookup Stage</b><hr/>Join TripStops<br>Join City Catalog]
-    S4[<b>$group Stage</b><hr/>Aggregate by cityId<br>$sum: visitors, $avg: cost]
-    S5[<b>$sort Stage</b><hr/>Order by visitors DESC<br>or cost ASC]
-    S6[<b>$skip & $limit</b><hr/>Pagination<br>Top 10 / Cursor]
-    S7[<b>$project Stage</b><hr/>Shape output fields<br>Remove _id internals]
-    S8[<b>200 OK</b><hr/>Return JSON to client]
+    S1["<b>Incoming API Request</b><hr/>JWT Admin Role<br>Date Filters"]
+    S2["<b>$match Stage</b><hr/>Filter by status<br>published & date range"]
+    S3["<b>$lookup Stage</b><hr/>Join TripStops<br>Join City Catalog"]
+    S4["<b>$group Stage</b><hr/>Aggregate by cityId<br>$sum: visitors, $avg: cost"]
+    S5["<b>$sort Stage</b><hr/>Order by visitors DESC<br>or cost ASC"]
+    S6["<b>$skip & $limit</b><hr/>Pagination<br>Top 10 / Cursor"]
+    S7["<b>$project Stage</b><hr/>Shape output fields<br>Remove _id internals"]
+    S8["<b>200 OK</b><hr/>Return JSON to client"]
 
     S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S8
     
@@ -160,11 +160,11 @@ The platform implements a **Zero-Trust, Defense-in-Depth** security model across
 graph TD
     subgraph ClientSide [🌐 Client-Side Security]
         direction LR
-        Yup[Yup Schema Validation<br/>Client-side form guards]
-        Route[Route Guards<br/>PrivateRoute / AdminRoute]
-        LocalJWT[JWT Storage<br/>Auto-inject via Axios interceptor]
-        AutoLog[Auto Logout<br/>401 response -> clear token + redirect]
-        Backoff[Exponential Backoff<br/>5xx retry: 1s -> 2s -> fail]
+        Yup["Yup Schema Validation<br/>Client-side form guards"]
+        Route["Route Guards<br/>PrivateRoute / AdminRoute"]
+        LocalJWT["JWT Storage<br/>Auto-inject via Axios interceptor"]
+        AutoLog["Auto Logout<br/>401 response -> clear token + redirect"]
+        Backoff["Exponential Backoff<br/>5xx retry: 1s -> 2s -> fail"]
         
         Yup --> Route --> LocalJWT
         LocalJWT --> AutoLog
@@ -179,13 +179,13 @@ graph TD
 
     subgraph APISide [⚙️ API-Side Security]
         direction TB
-        Helmet[Helmet<br/>XSS, CSP, HSTS headers]
-        CORS[CORS Whitelist<br/>Only allowed origins]
-        Rate[Rate Limiting<br/>Auth: 15 req/15m, Data: 100 req/15m]
-        HPP[HPP<br/>No duplicate query params]
-        NoSQL[NoSQL Sanitizer<br/>Strip $ and . keys]
-        JWT[JWT Verify<br/>RS256 signature check]
-        RBAC[RBAC<br/>role: user | admin]
+        Helmet["Helmet<br/>XSS, CSP, HSTS headers"]
+        CORS["CORS Whitelist<br/>Only allowed origins"]
+        Rate["Rate Limiting<br/>Auth: 15 req/15m, Data: 100 req/15m"]
+        HPP["HPP<br/>No duplicate query params"]
+        NoSQL["NoSQL Sanitizer<br/>Strip $ and . keys"]
+        JWT["JWT Verify<br/>RS256 signature check"]
+        RBAC["RBAC<br/>role: user | admin"]
         
         Helmet --> CORS --> Rate --> HPP --> NoSQL --> JWT --> RBAC
 
